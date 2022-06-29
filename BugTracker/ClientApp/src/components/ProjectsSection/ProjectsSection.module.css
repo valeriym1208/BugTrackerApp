@@ -1,0 +1,39 @@
+.projects__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projects__title {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.projects {
+    margin-top: 40px;
+    padding: 10px;
+    background-color: rgb(87, 165, 229);
+    border-radius: 10px;
+}
+
+.projects__table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+td {
+    border-top: 1px solid rgb(192, 188, 188);
+}
+
+thead th {
+    text-align: left;
+    text-transform: uppercase;
+    color: rgb(134, 132, 132);
+}

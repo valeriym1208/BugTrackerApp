@@ -1,0 +1,16 @@
+.dashboard {
+    background: rgb(255, 192, 203);
+    padding: 20px;
+    width: 90%;
+}
+.dashboard__title {
+    text-transform: uppercase;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,9 @@
+.textarea {
+	width: 90%;
+    height: 90px;
+	padding: 5px 15px;
+	margin: 5px 0;
+	border: 1px solid rgb(87, 165, 229);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
