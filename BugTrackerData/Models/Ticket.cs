@@ -18,9 +18,9 @@ namespace bug_tracker_data.Models
         [StringLength(100)]
         public string Description { get; set; }
         public TeamMember Author { get; set; }
-        public ProjectStatus Status { get; set; }
-        public ProjectType Type { get; set; }
-        public ProjectPriority Priority { get; set; }
+        public TicketStatus Status { get; set; }
+        public TicketType Type { get; set; }
+        public TicketPriority Priority { get; set; }
         [Range(1,168)]
         public int TimeEstimate { get; set; }
         public IEnumerable<TeamMember> AssignedDevs { get; set; }

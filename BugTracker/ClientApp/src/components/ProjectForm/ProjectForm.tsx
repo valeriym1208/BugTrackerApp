@@ -9,14 +9,10 @@ const ProjectForm = () => {
 
   const changeNameHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     setProjectName(e.target.value)
-    console.log(projectName);
-    
   }
 
   const changeDescriptionHandler = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     setProjectDescription(e.target.value)
-    console.log(projectDescription);
-    
   }
   return (
     <form>

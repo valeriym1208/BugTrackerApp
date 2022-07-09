@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace bug_tracker_data.Models
 {
-    public class ProjectType
+    public class TicketPriority
     {
         public int Id { get; set; }
-        public string Type { get; set; }
+        public string Priority { get; set; }
     }
 }
