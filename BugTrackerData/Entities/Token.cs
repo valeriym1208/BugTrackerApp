@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bug_tracker_data.Models;
+using BugTrackerData.Entities;
 
 namespace BugTrackerData.Models
 {
-    public class Token
+    public class Token : BaseEntity
     {
-        public int Id { get; set; }
         public string RefreshToken { get; set; }
         public TeamMember teamMember { get; set; }
     }

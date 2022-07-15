@@ -12,7 +12,7 @@ using bug_tracker_data;
 namespace BugTrackerData.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220709142853_Initial Migration")]
+    [Migration("20220713141455_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,14 +26,14 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int>("CommentAuthorId")
-                        .HasColumnType("int");
+                    b.Property<long>("CommentAuthorId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CommentMessage")
                         .IsRequired()
@@ -43,8 +43,8 @@ namespace BugTrackerData.Migrations
                     b.Property<DateTime>("SubmitDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TicketId")
-                        .HasColumnType("int");
+                    b.Property<long?>("TicketId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -57,11 +57,11 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.Orgranization", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.HasKey("Id");
 
@@ -70,19 +70,19 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.Project", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -98,11 +98,11 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.Team", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.HasKey("Id");
 
@@ -111,46 +111,42 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.TeamMember", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AuthorizationLevel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GivenName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("OrgranizationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
+                    b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<long?>("OrgranizationId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<long?>("TeamId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TicketId")
-                        .HasColumnType("int");
+                    b.Property<long?>("TicketId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -165,28 +161,28 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
+                    b.Property<long>("AuthorId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PriorityId")
-                        .HasColumnType("int");
+                    b.Property<long>("PriorityId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
+                    b.Property<long?>("ProjectId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
+                    b.Property<long>("StatusId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("TimeEstimate")
                         .HasColumnType("int");
@@ -196,8 +192,8 @@ namespace BugTrackerData.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
+                    b.Property<long>("TypeId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -216,11 +212,11 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.TicketPriority", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Priority")
                         .IsRequired()
@@ -233,11 +229,11 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.TicketStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -250,11 +246,11 @@ namespace BugTrackerData.Migrations
 
             modelBuilder.Entity("bug_tracker_data.Models.TicketType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -263,6 +259,28 @@ namespace BugTrackerData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TicketTypes");
+                });
+
+            modelBuilder.Entity("BugTrackerData.Models.Token", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("teamMemberId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("teamMemberId");
+
+                    b.ToTable("Tokens");
                 });
 
             modelBuilder.Entity("bug_tracker_data.Models.Comment", b =>
@@ -343,6 +361,17 @@ namespace BugTrackerData.Migrations
                     b.Navigation("Status");
 
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("BugTrackerData.Models.Token", b =>
+                {
+                    b.HasOne("bug_tracker_data.Models.TeamMember", "teamMember")
+                        .WithMany()
+                        .HasForeignKey("teamMemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("teamMember");
                 });
 
             modelBuilder.Entity("bug_tracker_data.Models.Orgranization", b =>

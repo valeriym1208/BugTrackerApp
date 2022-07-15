@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BugTrackerData.Entities;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace bug_tracker_data.Models
 {
-    public class Ticket
+    public class Ticket : BaseEntity
     {
-        public int Id { get; set; }
         [Required]
         [StringLength(30)]
         public string Title { get; set; }
