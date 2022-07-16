@@ -267,7 +267,7 @@ namespace BugTrackerData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<string>("RefreshToken")
+                    b.Property<string>("TokenJwt")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -10,7 +10,7 @@ namespace BugTrackerData.Models
 {
     public class Token : BaseEntity
     {
-        public string RefreshToken { get; set; }
+        public string TokenJwt { get; set; }
         public TeamMember teamMember { get; set; }
     }
 }

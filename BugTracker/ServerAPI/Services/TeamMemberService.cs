@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using bug_tracker_data.Models;
 using BugTracker.ServerAPI.Helpers;
 using BugTracker.ServerAPI.Interfaces;
@@ -12,11 +13,13 @@ namespace BugTracker.ServerAPI.Services
         private readonly IEfRepository<TeamMember> _teamMemberRepository;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        public TeamMemberService(IEfRepository<TeamMember> teamMemberRepository,IConfiguration config, IMapper mapper)
+        private readonly ITokenHelper _tokenHelper;
+        public TeamMemberService(IEfRepository<TeamMember> teamMemberRepository,IConfiguration config, IMapper mapper, ITokenHelper tokenHelper)
         {
             _config = config;
             _teamMemberRepository = teamMemberRepository;
             _mapper = mapper;
+            _tokenHelper = tokenHelper;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -24,14 +27,14 @@ namespace BugTracker.ServerAPI.Services
             var member = GetAll().FirstOrDefault(
                 x => x.Email == model.Email && BCrypt.Net.BCrypt.Verify(model.Password, x.HashPassword));
             if (member == null) return null;
-            var token = _config.GenerateJwtToken(member);
+            var token = _tokenHelper.GenerateJwtToken(member);
             return new AuthenticateResponse(member, token);
         }
 
         public async Task<AuthenticateResponse> Register(TeamMemberModel model)
         {
             var member = _mapper.Map<TeamMember>(model);
-            var addedMember = _teamMemberRepository.GetAll()
+            var addedMember = GetAll()
                 .FirstOrDefault(m => m.Email == member.Email);
             if (addedMember != null) return null;
             var hashPassword = BCrypt.Net.BCrypt.HashPassword(member.HashPassword);

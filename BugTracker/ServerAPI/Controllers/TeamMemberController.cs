@@ -26,6 +26,7 @@ namespace BugTracker.ServerAPI.Controllers
             if (response == null)
                 return BadRequest(
                     new {message = "Username or password are incorrect"});
+            Response.Cookies.Append("token",response.Token);
             return Ok(response);
         }
 
@@ -36,11 +37,12 @@ namespace BugTracker.ServerAPI.Controllers
             if (response == null)
                 return BadRequest(
                     new { message = "User already exist" });
+            Response.Cookies.Append("token", response.Token);
             return Ok(response);
         }
 
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login(AuthenticateRequest)
+        //[HttpPost("logout")]
+        //public async Task<IActionResult> Logout(AuthenticateRequest)
         //{
 
         //}

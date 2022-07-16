@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ITeamMemberService, TeamMemberService>();
+builder.Services.AddScoped<ITokenHelper, TokenHelper>();
 builder.Services.AddCors();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();

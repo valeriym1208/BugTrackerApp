@@ -12,7 +12,7 @@ using bug_tracker_data;
 namespace BugTrackerData.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220713141455_Initial Migration")]
+    [Migration("20220716183609_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -269,7 +269,7 @@ namespace BugTrackerData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<string>("RefreshToken")
+                    b.Property<string>("TokenJwt")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
