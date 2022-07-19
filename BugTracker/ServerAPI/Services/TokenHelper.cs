@@ -42,5 +42,13 @@ namespace BugTracker.ServerAPI.Helpers
 
             return existingToken.TokenJwt;
         }
+
+        public async Task<Token> DeleteJwtToken(string token)
+        {
+            var tokenEntity = _tokenRepository.GetAll()
+                .FirstOrDefault(t => t.TokenJwt == token);
+            var deletedToken = await _tokenRepository.Delete(tokenEntity);
+            return deletedToken;
+;       }
     }
 }

@@ -41,11 +41,14 @@ namespace BugTracker.ServerAPI.Controllers
             return Ok(response);
         }
 
-        //[HttpPost("logout")]
-        //public async Task<IActionResult> Logout(AuthenticateRequest)
-        //{
-
-        //}
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout(AuthenticateRequest request)
+        {
+            var token = Request.Cookies["token"];
+            var deletedToken = _memberService.Logout(token);
+            Response.Cookies.Delete("token");
+            return Ok(deletedToken.Result.TokenJwt);
+        }
 
 
         [HttpGet("getMembers")]

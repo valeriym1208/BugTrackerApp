@@ -18,11 +18,18 @@ namespace BugTracker.ServerAPI.Services
         {
             _context = context;
         }
-        public async Task<long> Add(T entity)
+        public async Task<T> Add(T entity)
         {
             var result = await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
-            return result.Entity.Id;
+            return result.Entity;
+        }
+
+        public async Task<T> Delete(T entity)
+        {
+            var result = _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
 
         public List<T> GetAll()
@@ -30,7 +37,7 @@ namespace BugTracker.ServerAPI.Services
             return _context.Set<T>().ToList();
         }
 
-        public T GetById(int id)
+        public T GetById(long id)
         {
             var result =  _context.Set<T>().FirstOrDefault(x => x.Id == id);
             if (result == null) return null;

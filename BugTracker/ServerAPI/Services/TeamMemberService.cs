@@ -49,6 +49,11 @@ namespace BugTracker.ServerAPI.Services
             return response;
         }
 
+        public async Task<Token> Logout(string token)
+        {
+            var deletedToken = await _tokenHelper.DeleteJwtToken(token);
+            return deletedToken;
+        }
         public IEnumerable<TeamMember> GetAll()
         {
             return _teamMemberRepository.GetAll();
@@ -59,4 +64,4 @@ namespace BugTracker.ServerAPI.Services
             return _teamMemberRepository.GetById(id);
         }
     }
-}
+}   

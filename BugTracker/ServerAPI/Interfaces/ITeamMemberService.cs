@@ -9,6 +9,7 @@ public interface ITeamMemberService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     Task<AuthenticateResponse> Register(TeamMemberModel model);
+    Task<Token> Logout(string token);
     IEnumerable<TeamMember> GetAll();
     TeamMember GetById(int id);
 }
